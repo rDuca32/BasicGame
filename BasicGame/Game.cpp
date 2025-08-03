@@ -55,6 +55,8 @@ Game::~Game() {
 
 void Game::run() {
 
+	// Main game loop
+
 	Clock clock;
 
 	while (window.isOpen()) {
@@ -76,6 +78,7 @@ void Game::run() {
 }
 
 void Game::handleEvents() {
+
 	while (const optional<Event> event = window.pollEvent()) {
 		if (event->is<Event::Closed>()) {
 			window.close();
@@ -95,6 +98,9 @@ void Game::handleEvents() {
 }
 
 void Game::updatePlaying(Clock& clock) {
+
+	// Update game logic for the playing state
+	
 	float dt = clock.restart().asSeconds();
 
 	player.handleInput(dt);
@@ -112,6 +118,8 @@ void Game::updatePlaying(Clock& clock) {
 		enemy.update(player.getPosition(), dt);
 	}
 }
+
+// Render the game state
 
 void Game::renderPlaying() {
 
@@ -132,6 +140,7 @@ void Game::renderPlaying() {
 }
 
 void Game::renderMenu() {
+
 	window.clear(Color::White);
 
 	Text title(font, "Menu");
